@@ -36,9 +36,10 @@ interviews/ - текстовые файлы интервью для автома
 - (Опционально) Аккаунт [OpenRouter](https://openrouter.ai/) для альтернативных моделей
 
 ## 2. Установка
-`git clone https://github.com/SmartBerry31415/LLM-agents-for-forecasting-public-perceptions-of-CB.git
-
-`cd <project-directory>
+```bash
+git clone https://github.com/SmartBerry31415/LLM-agents-for-forecasting-public-perceptions-of-CB.git
+cd <project-directory>
+```
 
 ## 3. Установка зависимостей
 pip install transformers>=4.40.0 torch>=2.1.2 requests
