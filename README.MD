@@ -60,14 +60,14 @@ YC_API_KEY = "your_actual_api_key"
 ## Использование
 
 ### Базовый запуск
-
+1. Если имеются готовые аватары (наборы параметров в формате json), поместите их в папку avatars либо укажите путь к любой другой папке, в которой они находятся.  
 ```python 
 from focus_group import FocusGroup
 from model import YandexModel
 
 MODEL_NAME = "yandexgpt"
-YC_FOLDER_ID = "your_folder_id"
-YC_API_KEY = "your_api_key"
+YC_FOLDER_ID = "your_folder_id" # YOUR YANDEX FOLDER ID
+YC_API_KEY = "your_api_key" # YOUR YANDEX API KEY
 MODEL_URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
 
 model = YandexModel(MODEL_NAME, MODEL_URL, YC_API_KEY, YC_FOLDER_ID)
@@ -75,17 +75,38 @@ focus_group = FocusGroup(
     model_for_preprocessing=None,
     use_auto_preprocessing=False,
     interviews_path=None,
-    avatars_path="avatars",
-    iterations=3
+    avatars_path="avatars", # FOLDER WITH AVATARS HERE
+    iterations=2
 )
 
 print(focus_group.add_agents(model))
 focus_group.conduct_interview("text.txt", "log.txt")
 ```
 
+2. Если необходимо предварительно создать аватары из текстов интервью (текстовые файлы в формате txt), поместите тексты интервью в папку interviews либо укажите путь к любой другой папке, в которой они находятся. 
+```python 
+from focus_group import FocusGroup
+from model import YandexModel
 
-Для получения параметров аватаров необходимо подать текстовые версии интервью большим языковым моделям. В текущем пайплайне аватары имеют следющие параметры:
+MODEL_NAME = "yandexgpt"
+YC_FOLDER_ID = "your_folder_id" # YOUR YANDEX FOLDER ID
+YC_API_KEY = "your_api_key" # YOUR YANDEX API KEY
+MODEL_URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
 
+model = YandexModel(MODEL_NAME, MODEL_URL, YC_API_KEY, YC_FOLDER_ID)
+focus_group = FocusGroup(
+    model_for_preprocessing=model,
+    use_auto_preprocessing=True,
+    interviews_path="interviews", # INTERVIEWS PATH HERE
+    avatars_path="avatars", 
+    iterations=2
+)
+
+print(focus_group.add_agents(model))
+focus_group.conduct_interview("text.txt", "log.txt")
+```
+
+В текущем пайплайне аватары имеют следющие параметры:
 ```
 {
   "name": "Angelina",
@@ -108,10 +129,34 @@ focus_group.conduct_interview("text.txt", "log.txt")
   "emotional_tone": "Обеспокоенный, критичный с элементами надежды"
 }
 ```
-
-## Сохранение полученных параметров
-
 Полученные параметры аватаров сохрянются в виде json файлов в папку `params`
+
+3. Фреймворк также предусматривает проведение интервью в автоматическом режиме. Для этого вопросы к фокус-группе необходимо сохранить в виде текстового файла (в формате txt, например, questions.txt) и передать путь к файлу методу conduct_auto_interview.
+
+```python 
+from focus_group import FocusGroup
+from model import YandexModel
+
+MODEL_NAME = "yandexgpt"
+YC_FOLDER_ID = "your_folder_id" # YOUR YANDEX FOLDER ID
+YC_API_KEY = "your_api_key" # YOUR YANDEX API KEY
+MODEL_URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
+
+model = YandexModel(MODEL_NAME, MODEL_URL, YC_API_KEY, YC_FOLDER_ID)
+focus_group = FocusGroup(
+    model_for_preprocessing=None,
+    use_auto_preprocessing=False,
+    interviews_path=None,
+    avatars_path="avatars",
+    iterations=2
+)
+
+print(focus_group.add_agents(model))
+focus_group.conduct_auto_interview("text.txt", "questions.txt", "log.txt")
+```
+
+
+
 
 ## Создание LLM агентов
 
