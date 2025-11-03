@@ -84,6 +84,10 @@ focus_group = FocusGroup(
 print(focus_group.add_agents(model))
 focus_group.conduct_interview("text.txt", "log.txt")
 ```
+
+В базовом варианте интервью проводится в интерактивном режиме:
+
+```
 Successfully added 10 agents.
 
 Your synthetic focus group consists of 10 respondents.
@@ -122,11 +126,7 @@ Enter your question for the focus group: END
 
 Interview terminated. Results saved to: log.txt
 ```
-В базовом варианте интервью проводится в интерактивном режиме:
 
-
-
-```
 2. Если необходимо предварительно создать аватары из текстов интервью (текстовые файлы в формате txt), поместите тексты интервью в папку interviews либо укажите путь к любой другой папке, в которой они находятся. 
 
 ```python 
