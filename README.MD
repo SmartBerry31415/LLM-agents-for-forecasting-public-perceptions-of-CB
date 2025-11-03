@@ -30,23 +30,59 @@ interviews/ - текстовые файлы интервью для автома
 
 # Быстрый старт 
 
-## 1. Требования
+## Установка и настройка
+
+### 1. Требования
 - Python 3.8+
 - Аккаунт [Yandex Cloud](https://yandex.cloud/ru/) с API-ключом для YandexGPT
 - (Опционально) Аккаунт [OpenRouter](https://openrouter.ai/) для альтернативных моделей
 
-## 2. Установка
+### 2. Установка
 ```bash
 git clone https://github.com/SmartBerry31415/LLM-agents-for-forecasting-public-perceptions-of-CB.git
 cd <project-directory>
 ```
 
-## 3. Установка зависимостей
+### 3. Установка зависимостей
+```python
 pip install transformers>=4.40.0 torch>=2.1.2 requests
+```
 
-## 4. Настройка API
+### 4. Настройка API
 Получите API-ключ и Folder ID в Yandex Cloud
 Замените значения в main.py
+
+```python
+YC_FOLDER_ID = "your_actual_folder_id"
+YC_API_KEY = "your_actual_api_key"
+```
+
+## Использование
+
+### Базовый запуск
+
+```python 
+from focus_group import FocusGroup
+from model import YandexModel
+
+MODEL_NAME = "yandexgpt"
+YC_FOLDER_ID = "your_folder_id"
+YC_API_KEY = "your_api_key"
+MODEL_URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
+
+model = YandexModel(MODEL_NAME, MODEL_URL, YC_API_KEY, YC_FOLDER_ID)
+focus_group = FocusGroup(
+    model_for_preprocessing=None,
+    use_auto_preprocessing=False,
+    interviews_path=None,
+    avatars_path="avatars",
+    iterations=3
+)
+
+print(focus_group.add_agents(model))
+focus_group.conduct_interview("text.txt", "log.txt")
+```
+
 
 Для получения параметров аватаров необходимо подать текстовые версии интервью большим языковым моделям. В текущем пайплайне аватары имеют следющие параметры:
 
