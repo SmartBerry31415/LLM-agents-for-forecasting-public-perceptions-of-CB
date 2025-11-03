@@ -7,7 +7,7 @@
 
 # Структура проекта
 
-##Основные модули
+## Основные модули
 
 agent.py - класс Agent, представляющий участника фокус-группы
 
@@ -36,13 +36,16 @@ interviews/ - текстовые файлы интервью для автома
 - (Опционально) Аккаунт [OpenRouter](https://openrouter.ai/) для альтернативных моделей
 
 ## 2. Установка
-git clone https://github.com/SmartBerry31415/LLM-agents-for-forecasting-public-perceptions-of-CB.git
-cd <project-directory>
+`git clone https://github.com/SmartBerry31415/LLM-agents-for-forecasting-public-perceptions-of-CB.git
+
+`cd <project-directory>
 
 ## 3. Установка зависимостей
 pip install transformers>=4.40.0 torch>=2.1.2 requests
 
-## Извлечение параметров аватаров
+## 4. Настройка API
+Получите API-ключ и Folder ID в Yandex Cloud
+Замените значения в main.py
 
 Для получения параметров аватаров необходимо подать текстовые версии интервью большим языковым моделям. В текущем пайплайне аватары имеют следющие параметры:
 
