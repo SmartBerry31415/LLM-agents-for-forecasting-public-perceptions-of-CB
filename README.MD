@@ -6,13 +6,14 @@
 Фреймворк для создания синтетических фокус-групп на основе LLM-агентов с персонализированными характеристиками. Позволяет моделировать обсуждение документов ЦБ и анализировать динамику доверия к институтам.
 
 # Быстрый старт 
+
 ## 1. Требования
 - Python 3.8+
 - Аккаунт [Yandex Cloud](https://yandex.cloud/ru/) с API-ключом для YandexGPT
 - (Опционально) Аккаунт [OpenRouter](https://openrouter.ai/) для альтернативных моделей
+
 ## 2. Установка
-bash
-git clone <repository-url>
+git clone https://github.com/SmartBerry31415/LLM-agents-for-forecasting-public-perceptions-of-CB.git
 cd <project-directory>
 
 
